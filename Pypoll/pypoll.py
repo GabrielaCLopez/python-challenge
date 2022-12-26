@@ -61,6 +61,7 @@ with open (output_file, "w") as text_file:
         vote_output = (f"""{candidate}: {vote_percentage:.3f}% ({votes})
         
         
+        
         """)
 
         print(vote_output)
