@@ -58,7 +58,18 @@ with open (output_file, "w") as text_file:
             winning_count = votes
             winning_candidate = candidate
         
-        output = f"{candidate}: {vote_percentage:.3f}% ({votes})"
+        vote_output = f"{candidate}: {vote_percentage:.3f}% ({votes})"
         print(output)
 
-        text_file.write(output)
+        summary_info = (f"""
+        -------------------------
+        {output}
+        -------------------------
+        Winner: {candidate}
+        -------------------------
+        """)
+
+        print(vote_output)
+
+        with open (output_file, "w") as text:
+            text.write(vote_output)
