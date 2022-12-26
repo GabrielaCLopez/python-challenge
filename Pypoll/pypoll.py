@@ -36,43 +36,53 @@ with open (filepath) as data:
         # adds the votes
         candidate_votes[candidate_name] += 1
 
+# this is to create the first part of the summary (total votes)
 with open (output_file, "w") as text_file:
     output = (f"""
-        Election Results
-        ----------------------------
-        Total Votes: {vote_count}
-        -------------------------
-        """)
+    Election Results
+    ----------------------------
+    Total Votes: {vote_count}
+    """)
 
     print(output)
 
+    # write the output to the text file
     text_file.write(output)
 
-    for candidate in candidate_votes:
-
-        votes = candidate_votes.get(candidate)
+    # this will track each candidate's votes
+    for candidate_name in candidate_votes:
+        # each time the candidate is logged, the votes will be added to their total
+        votes = candidate_votes.get(candidate_name)
+        # calculates the percentage
         vote_percentage = float(votes) / float(vote_count) * 100
 
+        # if the votes for that candidate are greater than the current count, they have the winning vote
         if (votes > winning_count):
+
+            # that number is now the winning vote along with the matching candidate
             winning_count = votes
-            winning_candidate = candidate
+            winning_candidate = candidate_name
         
+        # the voter infomration will be written to the text file in this format
         vote_output = (f"""
-        {candidate}: {vote_percentage:.3f}% ({votes})
+        {candidate_name}: {vote_percentage:.3f}% ({votes})
         """)
 
         print(vote_output)
 
         text_file.write(vote_output)
 
-        winner_output = (f"""
+
+    winner_output = (
+        f"""
         -------------------------
         Winner: {winning_candidate}
         -------------------------
         """)
-        print(winner_output)
 
-        text_file.write(winner_output)
+    print(winner_output)
+
+    text_file.write(winner_output)
 
 
 
