@@ -35,21 +35,30 @@ with open (filepath) as data:
             candidate_votes[candidate_name] = 0
         # adds the votes
         candidate_votes[candidate_name] += 1
-       
 
-    for candidate_name in candidate_votes:
-        votes = candidate_votes.get(candidate_name)
+with open (output_file, "w") as text_file:
+    output = (f"""
+    Election Results
+    ----------------------------
+    Total Votes: {vote_count}
+    -------------------------
+
+    """)
+
+    print(output)
+
+    text_file.write(output)
+
+    for candidate in candidate_votes:
+
+        votes = candidate_votes.get(candidate)
         vote_percentage = float(votes) / float(vote_count) * 100
-        
+
         if (votes > winning_count):
             winning_count = votes
-            winning_candidate = candidate_name
-
-        voter_output = f"{candidate_name}: {vote_percentage:.2f}% ({votes})\n"
-
-        print(voter_output)
-
-        with open (output_file, "w") as text:
-            text.write({voter_output})
-
+            winning_candidate = candidate
         
+        output = f"{candidate}: {vote_percentage:.3f}% ({votes})"
+        print(output)
+
+        text_file.write(output)
