@@ -38,11 +38,11 @@ with open (filepath) as data:
 
 with open (output_file, "w") as text_file:
     output = (f"""
-    Election Results
-    ----------------------------
-    Total Votes: {vote_count}
-    -------------------------
-    """)
+        Election Results
+        ----------------------------
+        Total Votes: {vote_count}
+        -------------------------
+        """)
 
     print(output)
 
