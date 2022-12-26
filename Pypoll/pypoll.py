@@ -16,8 +16,6 @@ candidate_votes = {}
 winning_candidate = ""
 # the count
 winning_count = 0
-# the percentage
-winning_percentage = 0
 
 
 # opens the results and reads the file
@@ -37,24 +35,21 @@ with open (filepath) as data:
             candidate_votes[candidate_name] = 0
         # adds the votes
         candidate_votes[candidate_name] += 1
+       
 
-# if votes are > than winning votes 
+    for candidate_name in candidate_votes:
+        votes = candidate_votes.get(candidate_name)
+        vote_percentage = float(votes) / float(vote_count) * 100
+        
+        if (votes > winning_count):
+            winning_count = votes
+            winning_candidate = candidate_name
 
-output = (f"""
-Election Results
--------------------------
-Total Votes:
--------------------------
-Charles Casper Stockham: 23.049% (85213)
-Diana DeGette: 73.812% (272892)
-Raymon Anthony Doane: 3.139% (11606)
--------------------------
-Winner: Diana DeGette
--------------------------
+        voter_output = f"{candidate_name}: {vote_percentage:.2f}% ({votes})\n"
 
-""")
+        print(voter_output)
 
-print(output)
+        with open (output_file, "w") as text:
+            text.write({voter_output})
 
-with open (output_file, "w") as text:
-    text.write(output)
+        
