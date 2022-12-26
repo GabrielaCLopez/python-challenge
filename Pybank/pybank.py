@@ -1,10 +1,12 @@
 import csv
 import os
 
-
+# assign the file to a variable
 filepath = os.path.join("Resources", "budget_data.csv")
+# the file that will be written to
 output_file = os.path.join("Analysis", "budgetanalysis.txt")
 
+# start values at zero and create lists
 total_months = 0
 total_net = 0
 months_list = []
@@ -20,7 +22,6 @@ with open (filepath) as data:
     total_months += 1
     total_net += int(first_row[1])
     previous = int(first_row[1])
-
 
     for row in reader:
         total_months += 1
